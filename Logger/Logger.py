@@ -9,7 +9,7 @@ class Singleton(type):
         return cls._instances[cls]
 
 
-class logging_helper(object):
+class Logger(object):
     __metaclass__ = Singleton
     _internal_logger = None
 
@@ -17,10 +17,10 @@ class logging_helper(object):
         pass
 
     @staticmethod
-    def getLogger():
-        if logging_helper._internal_logger == None:
-            logging_helper._internal_logger = logging.getLogger('com.pewpewthespells.py.logging_helper')
-            logging_helper._internal_logger.setLevel(logging.INFO)
+    def write():
+        if Logger._internal_logger == None:
+            Logger._internal_logger = logging.getLogger('com.pewpewthespells.py.logging_helper')
+            Logger._internal_logger.setLevel(logging.INFO)
 
             ch = logging.StreamHandler()
             ch.setLevel(logging.INFO)
@@ -32,5 +32,5 @@ class logging_helper(object):
             ch.setFormatter(formatter)
 
             # add ch to logger
-            logging_helper._internal_logger.addHandler(ch)
-        return logging_helper._internal_logger
+            Logger._internal_logger.addHandler(ch)
+        return Logger._internal_logger
